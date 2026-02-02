@@ -32,6 +32,7 @@ class Category(models.Model):
     num_article_summaries = models.PositiveIntegerField(default=10)
     article_summary_layout = models.CharField(max_length=100, default='list')
     num_related_summaries = models.PositiveIntegerField(default=3)
+    description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
