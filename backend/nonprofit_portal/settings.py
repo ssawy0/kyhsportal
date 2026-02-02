@@ -105,8 +105,13 @@ REST_FRAMEWORK = {
 
 # CORS for local dev (client runs on 3000)
 CORS_ALLOWED_ORIGINS = [
+    # Common local dev ports used by React/Vite
     'http://localhost:3000',
     'http://127.0.0.1:3000',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:5174',
+    'http://127.0.0.1:5174',
 ]
 
 # django-extensions graph_models options
