@@ -72,10 +72,12 @@ export default function ArticleList(){
         ))}
       </ul>
 
-      <div style={{marginTop:20}}>
-        <button onClick={() => goToPage(Math.max(1, page-1))} disabled={!data.previous || page<=1}>Previous</button>
+      <div style={{marginTop:20, display:'flex', alignItems:'center', gap:12}}>
+        <button onClick={() => goToPage(1)} disabled={page <= 1}>First</button>
+        <button onClick={() => goToPage(Math.max(1, page-1))} disabled={page <= 1}>Previous</button>
         <span style={{margin:'0 12px'}}>Page {page} of {totalPages}</span>
-        <button onClick={() => goToPage(Math.min(totalPages, page+1))} disabled={!data.next || page>=totalPages}>Next</button>
+        <button onClick={() => goToPage(Math.min(totalPages, page+1))} disabled={page >= totalPages}>Next</button>
+        <button onClick={() => goToPage(totalPages)} disabled={page >= totalPages}>Last</button>
       </div>
     </div>
   )
