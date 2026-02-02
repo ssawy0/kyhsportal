@@ -8,9 +8,11 @@ class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     def get_permissions(self):
-        # Require authentication for create, allow read-only access for others
+        # For create we allow the request through so `perform_create` can
+        # return a friendly PermissionDenied message for anonymous users.
+        # For other actions enforce normal IsAuthenticatedOrReadOnly.
         if self.action == 'create':
-            permission_classes = [permissions.IsAuthenticated]
+            permission_classes = [permissions.AllowAny]
         else:
             permission_classes = [permissions.IsAuthenticatedOrReadOnly]
         return [p() for p in permission_classes]
