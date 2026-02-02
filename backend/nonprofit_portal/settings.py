@@ -98,6 +98,9 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ),
+    # Use page-number pagination by default. Allow clients to request page_size
+    # with a query param up to a maximum of 100. Default page size is 10.
+    'DEFAULT_PAGINATION_CLASS': 'articles.pagination.StandardResultsSetPagination',
 }
 
 # CORS for local dev (client runs on 3000)

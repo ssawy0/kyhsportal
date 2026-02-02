@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import ArticlePage from './ArticlePage'
+import ArticleList from './ArticleList'
 
 function Home(){
   return (
@@ -17,6 +18,7 @@ export default function App(){
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/articles" element={<ArticleList/>} />
         <Route path="/articles/:id" element={<ArticlePage/>} />
       </Routes>
     </BrowserRouter>
