@@ -19,3 +19,14 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         fields = '__all__'
+
+
+from .models import Category
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    parent = serializers.PrimaryKeyRelatedField(read_only=True)
+
+    class Meta:
+        model = Category
+        fields = ('id', 'name', 'parent', 'num_article_summaries', 'article_summary_layout', 'num_related_summaries')

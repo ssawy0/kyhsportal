@@ -15,3 +15,29 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Category(models.Model):
+    """Category for organizing articles. Supports hierarchical parent linking.
+
+    Properties requested:
+    - name: String
+    - parent: self reference (nullable)
+    - num_article_summaries: integer (how many article summaries to show)
+    - article_summary_layout: string (layout identifier)
+    - num_related_summaries: integer (how many related summaries to show)
+    """
+    name = models.CharField(max_length=200)
+    parent = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, related_name='children')
+    num_article_summaries = models.PositiveIntegerField(default=10)
+    article_summary_layout = models.CharField(max_length=100, default='list')
+    num_related_summaries = models.PositiveIntegerField(default=3)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name

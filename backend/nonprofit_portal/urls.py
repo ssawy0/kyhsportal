@@ -4,6 +4,7 @@ from rest_framework import routers
 
 from articles.views import ArticleViewSet
 from members.views import MemberViewSet
+from articles.views import CategoryViewSet
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -12,6 +13,7 @@ from rest_framework_simplejwt.views import (
 router = routers.DefaultRouter()
 router.register(r'articles', ArticleViewSet, basename='article')
 router.register(r'members', MemberViewSet, basename='member')
+router.register(r'categories', CategoryViewSet, basename='category')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

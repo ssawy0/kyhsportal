@@ -2,6 +2,8 @@ from rest_framework import viewsets, permissions
 from rest_framework.exceptions import PermissionDenied
 from .models import Article
 from .serializers import ArticleSerializer
+from .models import Category
+from .serializers import CategorySerializer
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.order_by('-created_at')
@@ -24,3 +26,12 @@ class ArticleViewSet(viewsets.ModelViewSet):
         if not user or not user.is_authenticated:
             raise PermissionDenied("Sorry, only registered users may post an Article")
         serializer.save(author=user)
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """Simple CRUD for categories.
+
+    Read access is open; creation/editing requires authentication (default permission applied).
+    """
+    queryset = Category.objects.order_by('name')
+    serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
