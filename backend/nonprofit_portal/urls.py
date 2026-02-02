@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from articles.views import ArticleViewSet
+from articles.views import ArticleViewSet, tailwind_example
 from members.views import MemberViewSet
 from articles.views import CategoryViewSet
 from rest_framework_simplejwt.views import (
@@ -18,6 +18,8 @@ router.register(r'categories', CategoryViewSet, basename='category')
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    # Tailwind example page (server-rendered responsive example)
+    path('tailwind-example/', tailwind_example, name='tailwind_example'),
     # JWT endpoints (obtain/refresh)
     path('api/auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),

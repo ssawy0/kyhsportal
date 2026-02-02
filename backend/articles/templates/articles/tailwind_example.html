@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Tailwind Example</title>
+    <link rel="stylesheet" href="{% static 'articles/css/tailwind.build.css' %}" />
+  </head>
+  <body class="bg-gray-50 text-gray-900">
+    <header class="bg-white shadow">
+      <div class="example-container flex items-center justify-between">
+        <h1 class="text-2xl font-semibold">KYHS Portal — Tailwind Example</h1>
+        <nav class="hidden md:flex gap-4">
+          <a class="text-sm text-gray-700 hover:underline" href="/">Home</a>
+          <a class="text-sm text-gray-700 hover:underline" href="/api/articles/">API</a>
+        </nav>
+        <div class="md:hidden">
+          <button class="p-2 rounded bg-gray-100">Menu</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="example-container mt-8">
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="col-span-2 bg-white p-6 rounded shadow">
+          <h2 class="text-xl font-bold mb-2">Responsive article area</h2>
+          <p class="text-sm text-gray-600 mb-4">Resize the window to see the layout adapt: on small screens this stacks vertically; on medium+ screens the sidebar appears.</p>
+          <p>This is a server-rendered Django template using Tailwind for responsiveness. You can use HTMX or Alpine to add interactivity while keeping rendering on the server.</p>
+        </article>
+
+        <aside class="bg-white p-4 rounded shadow">
+          <h3 class="font-semibold mb-2">Sidebar</h3>
+          <ul class="text-sm text-gray-700 space-y-2">
+            <li><a href="#" class="hover:underline">Recent</a></li>
+            <li><a href="#" class="hover:underline">Popular</a></li>
+            <li><a href="#" class="hover:underline">Categories</a></li>
+          </ul>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="example-container mt-12 mb-8 text-center text-sm text-gray-500">
+      Built with Tailwind CSS — responsive by design.
+    </footer>
+  </body>
+</html>

@@ -4,6 +4,7 @@ from .models import Article
 from .serializers import ArticleSerializer
 from .models import Category
 from .serializers import CategorySerializer
+from django.shortcuts import render
 
 class ArticleViewSet(viewsets.ModelViewSet):
     queryset = Article.objects.order_by('-created_at')
@@ -35,3 +36,12 @@ class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.order_by('name')
     serializer_class = CategorySerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+
+
+def tailwind_example(request):
+    """Render a small responsive Tailwind example page.
+
+    The template lives at `articles/tailwind_example.html` and the built
+    CSS is expected at `articles/static/css/tailwind.build.css`.
+    """
+    return render(request, 'articles/tailwind_example.html')
