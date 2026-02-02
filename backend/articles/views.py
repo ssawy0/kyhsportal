@@ -16,9 +16,9 @@ class ArticleViewSet(viewsets.ModelViewSet):
         return [p() for p in permission_classes]
 
     def perform_create(self, serializer):
-        # Set the author to the requesting user when creating via the API
+        # Only authenticated users may create articles. If an unauthenticated
+        # request slips through, raise a clear PermissionDenied message.
         user = getattr(self.request, 'user', None)
         if not user or not user.is_authenticated:
-            # This should be prevented by permissions, but guard defensively
-            raise PermissionDenied("Authentication required to create articles")
+            raise PermissionDenied("Sorry, only registered users may post an Article")
         serializer.save(author=user)
